@@ -1,13 +1,15 @@
 # md-cms
 
-md-cms is a minimal file-based content-management-system (CMS), consisting of Markdown files and a very slim PHP core. 
+Sometimes it doesn't take much: a fancy main page, divided into a few components for clarity and ... oh yes, the legal pages. But later having to edit imprint and privacy policy in HTML? Not fun. - that's how md-cms came into being.
+
+*md-cms is a minimal flat-file CMS, consisting of Markdown files and a very slim PHP core.*
 
 Features:
 * Dynamic rendering of Markdown files via HTML template
 * Utility-first styling with [tailwindcss](http://tailwindcss.com)
 * Lightweight interactivity using [Alpine.js](https://alpinejs.dev)
 * Development server with auto-reload
-* Git-based auto-deployment feature
+* Git-based auto-deployment feature via webhooks
 
 **Note:** [Parsedown 1.7.4](https://github.com/erusev/parsedown) requires PHP <8.1
 
@@ -80,3 +82,10 @@ git clone git@your_project:user/your.project.git'
 5. Add a webhook to your git platform, specifying the `/deploy/<YOUR_DEPLOYMENT_SECRET>` endpoint.
 
 6. Sit back and enjoy.
+
+## You need more?
+
+I know some projects grow. And at some point, the customer might even want a backend with login and everything. For you too?
+Then check out Kirby: Also a flat-file CMS with similar folder structure, fancy and fully customizable backend, plugins and much more.
+
+https://getkirby.com

@@ -1,7 +1,7 @@
 {
   "name": "md-cms",
   "version": "0.1.0",
-  "description": "A minimal file-based CMS, consisting of Markdown files and a very slim PHP core",
+  "description": "A minimal flat-file CMS, consisting of Markdown files and a very slim PHP core",
   "repository": "https://github.com/philipptrenz/md-cms.git",
   "author": "philipptrenz <mail@philipptrenz.de>",
   "license": "",
