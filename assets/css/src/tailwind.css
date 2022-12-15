@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html {
+	@apply leading-6;
+}
+
+.richtext {
+	@apply max-w-xl print:max-w-full mx-auto px-4 break-words;
+}
+
+.richtext h1 {
+	@apply text-2xl print:text-[24pt] pb-6 font-bold ;
+}
+
+.richtext h2 {
+	@apply text-xl print:text-[18pt] pb-4 font-bold;
+}
+
+.richtext h3 {
+	@apply text-lg print:text-[16pt] pb-2 font-bold;
+}
+
+.richtext h4 {
+	@apply text-base print:text-[14pt] pb-1 font-bold;
+}
+
+.richtext p,
+.richtext ul {
+	@apply text-base print:text-[11pt] pb-4;
+}
+
+.richtext a {
+	@apply underline;
+}
+
+.richtext li {
+	@apply ml-8 ;
+}
+
+.richtext ul li {
+	@apply list-disc;
+}
+
+.richtext ol li {
+	@apply list-decimal;
+}
+
+.button {
+	@apply pt-2 pb-4 px-6 bg-black hover:bg-opacity-75 active:bg-opacity-50 lowercase text-white underline-offset-8;
+}

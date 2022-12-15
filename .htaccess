@@ -1,0 +1,66 @@
+# Deny access to all hidden files in root
+<FilesMatch "^\.(.+)$">
+  order deny,allow
+  deny from all
+</FilesMatch>
+
+# Deny access to all project related files in project root by file extensions (.js, .json, .sh, .lock, .md)
+<FilesMatch "^(.+\.js|.+\.json|.+\.sh|.+\.lock|.+\.md)$">
+  order deny,allow
+  deny from all
+</FilesMatch>
+
+# rewrite rules
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not redirect for SSH public key file
+  RewriteRule key.pub - [L]
+
+  # block all files in the content folder from being accessed directly
+  RewriteRule ^content/(.*) index.php [L]
+
+  # block all files in the node_modules folder from being accessed directly
+  RewriteRule ^node_modules/(.*) index.php [L]
+
+  # block all files in the scripts folder from being accessed directly
+  RewriteRule ^scripts/(.*) index.php [L]
+
+  # block all files in the views folder from being accessed directly
+  RewriteRule ^site/(.*) index.php [L]
+
+  # block all files in the .git folder from being accessed directly
+  RewriteRule ^.git/(.*) index.php [L]
+
+  # make site links work
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*) index.php [L]
+
+</IfModule>
+
+# compress text file responses
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Add caching headers
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 2 weeks"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/plain "access plus 1 month"
+  ExpiresByType image/gif "access plus 4 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType application/javascript "access plus 2 weeks"
+  ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
