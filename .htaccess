@@ -4,12 +4,6 @@
   deny from all
 </FilesMatch>
 
-# Deny access to all project related files in project root by file extensions (.js, .json, .sh, .lock, .md)
-<FilesMatch "^(.+\.js|.+\.json|.+\.sh|.+\.lock|.+\.md)$">
-  order deny,allow
-  deny from all
-</FilesMatch>
-
 # rewrite rules
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -32,6 +26,10 @@
 
   # block all files in the .git folder from being accessed directly
   RewriteRule ^.git/(.*) index.php [L]
+
+  # block all development related files in project root (*.md, *.js, *.json, *.sh, *.lock)
+  RewriteRule ^[a-zA-U0-9\.\-\_]+(\.js|\.json|\.sh|\.lock|\.md)$ index.php [L]
+
 
   # make site links work
   RewriteCond %{REQUEST_FILENAME} !-f
