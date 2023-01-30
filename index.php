@@ -1,5 +1,8 @@
 <?php
 
+// Load config
+$config = require('site/config/config.php');
+
 $cwd = getcwd();
 
 // Load environment variables from .env file
