@@ -18,7 +18,7 @@
         <script src="/assets/js/smooth-scroll/init.js" defer></script>
         <script src="/assets/js/smooth-scroll/core.min.js" async id="smooth-scroll"></script>
 
-        <?php if ($config && $matomo = $config['matomo']): ?>
+        <?php if ($config && $matomo = $config['matomo'] && in_array("id", $config['matomo']) && in_array('url', $config['matomo'])): ?>
         <?php $disableCookies = in_array("disableCookies", $matomo) ? $matomo["disableCookies"] : false; ?>
         <script>
             var _paq = window._paq = window._paq || [];
