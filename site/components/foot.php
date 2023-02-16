@@ -14,29 +14,36 @@
             </ul>
         </footer>
 
+        <?php /*
         <script src="/assets/js/alpinejs/core.min.js" defer></script>
         <script src="/assets/js/smooth-scroll/init.js" defer></script>
         <script src="/assets/js/smooth-scroll/core.min.js" async id="smooth-scroll"></script>
+        */ ?>
 
-        <?php if ($config && $matomo = $config['matomo'] && in_array("id", $config['matomo']) && in_array('url', $config['matomo'])): ?>
-        <?php $disableCookies = in_array("disableCookies", $matomo) ? $matomo["disableCookies"] : false; ?>
-        <script>
-            var _paq = window._paq = window._paq || [];
-            <?php if ($disableCookies): ?>
-            _paq.push(['disableCookies']);
-            <?php endif ?>
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="<?= rtrim($matomo["url"],"/").'/' ?>";
-                _paq.push(['setTrackerUrl', u+'matomo.php']);
-                _paq.push(['setSiteId', '<?= $matomo["id"] ?>']);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
-        <noscript><p><img src="<?= rtrim($matomo["url"],"/").'/' ?>matomo.php?idsite=<?= $matomo["id"] ?>&amp;rec=1" style="border:0;" alt="" /></p></noscript>
-        <?php endif ?>
+        <?php 
+            if ($config && $config['matomo'] && in_array("id", $config['matomo']) && in_array('url', $config['matomo'])): 
+                $matomo = $config['matomo'];
+                $disableCookies = in_array("disableCookies", $matomo) ? $matomo["disableCookies"] : false; 
+        ?>
+            <script>
+                var _paq = window._paq = window._paq || [];
+                <?php if ($disableCookies): ?>
+                _paq.push(['disableCookies']);
+                <?php endif ?>
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                    var u="<?= rtrim($matomo["url"],"/").'/' ?>";
+                    _paq.push(['setTrackerUrl', u+'matomo.php']);
+                    _paq.push(['setSiteId', '<?= $matomo["id"] ?>']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script>
+            <noscript><p><img src="<?= rtrim($matomo["url"],"/").'/' ?>matomo.php?idsite=<?= $matomo["id"] ?>&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+        <?php 
+            endif;
+        ?>
 
     </body>
 </html>

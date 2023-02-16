@@ -19,9 +19,9 @@ gulp.task('reload', function (cb) {
 });
 
 gulp.task('postcss', function (cb) {
-    return gulp.src("./assets/css/src/*.css") // read .css files from ./src/ folder
+    return gulp.src("./site/tailwind/*.css") // read .css files from ./src/ folder
         .pipe(postcss()) // compile using postcss
-        .pipe(gulp.dest("./assets/css/dist")) // paste them in ./assets/css folder
+        .pipe(gulp.dest("./assets/css")) // paste them in ./assets/css folder
         .pipe(browserSync.stream());
     return cb();
 });
